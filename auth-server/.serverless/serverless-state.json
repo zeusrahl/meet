@@ -187,7 +187,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/auth-server/dev/1635819638300-2021-11-02T02:20:38.300Z/auth-server.zip"
+                "S3Key": "serverless/auth-server/dev/1635896076904-2021-11-02T23:34:36.904Z/auth-server.zip"
               },
               "Handler": "handler.getAuthURL",
               "Runtime": "nodejs12.x",
@@ -220,7 +220,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/auth-server/dev/1635819638300-2021-11-02T02:20:38.300Z/auth-server.zip"
+                "S3Key": "serverless/auth-server/dev/1635896076904-2021-11-02T23:34:36.904Z/auth-server.zip"
               },
               "Handler": "handler.hello",
               "Runtime": "nodejs12.x",
@@ -351,7 +351,7 @@
               "GetAuthURLLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1635819630848": {
+          "ApiGatewayDeployment1635896072057": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -592,7 +592,7 @@
     "artifact": "/Users/dotsonkellyfam/Developer/Career_Foundry/Full-Stack_Achievement_4/meet/auth-server/.serverless/auth-server.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/auth-server/dev/1635819638300-2021-11-02T02:20:38.300Z",
+    "artifactDirectoryName": "serverless/auth-server/dev/1635896076904-2021-11-02T23:34:36.904Z",
     "artifact": "auth-server.zip"
   }
 }

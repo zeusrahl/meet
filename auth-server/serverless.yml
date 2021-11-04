@@ -3,7 +3,7 @@ service: auth-server
 provider:
   name: aws
   runtime: nodejs12.x
-  region: eu-central-1
+  region: us-east-1
   timeout: 30 # optional, in seconds, default is 6
   environment:
     CLIENT_ID: ${file(config.json):CLIENT_ID}
@@ -23,4 +23,10 @@ functions:
     events:
       - http:
           path: api/token/{code}
+          method: get
+  getCalendarEvents:
+    handler: handler.getCalendarEvents
+    events:
+      - http:
+          path: api/get-events/{access_token}
           method: get

@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Test Auth Server</title>
-  </head>
 
-  <body>
     <style>
       #container {
         max-width: 500px;
@@ -17,7 +15,9 @@
         margin-top: 25px;
       }
     </style>
+  </head>
 
+  <body>
 
     <main id="container">
       <h1>OAuth2 Test</h1>
@@ -25,8 +25,8 @@
         <p>Click the button below to get your OAuth URL.</p>
         <button id="getURL">Get OAuth URL</button>
         <p id="result"></p>
-        <a id="authURL" href target="_blank">Click to authorize</a>
-        <!-- STEP 2 -- MAKE SURE STEP 1 WORKS BEFORE MOVING ON -->
+        <a id="authURL" href="#" target="_blank">Click to authorize</a>
+        <!-- STEP 2 - MAKE SURE STEP 1 WORKS BEFORE MOVING ON -->
 
         <h4>Step2 : Get your code and exchange for an access token</h4>
         <p>
@@ -39,12 +39,12 @@
         </label>
         <button id="getToken">Get Token</button>
         <p id="accessToken"></p>
-        <!-- STEP 3 -- MAKE SURE STEP 2 WORKS BEFORE MOVING ON -->
+        <!-- STEP 3 - MAKE SURE STEP 2 WORKS BEFORE MOVING ON -->
         <h4>Step 3: get the calendar events using your access token</h4>
         <button id="getEvents">Get Events</button>
         <p id="events"></p>
     </main>
-    <script type="text/javascript">
+    <script>
       // --------------------- STEP 1
       const getURLElement = document.getElementById("getURL");
       const resultElement = document.getElementById("result");

@@ -1,5 +1,5 @@
 const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
+// const OAuth2 = google.auth.OAuth2;
 const calendar = google.calendar("v3");
 /**
  * SCOPES allows you to set access levels; this is set to readonly for now because you don't have access rights to
@@ -115,7 +115,7 @@ module.exports.getAccessToken = async (event) => {
     );
 
     // Decode authorization code extracted from the URL query
-    const access_token = decodeURIComponent(`${event.pathParameters.code}`);
+    const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
     oAuth2Client.setCredentials({ access_token });
 
     return new Promise((resolve, reject) => {

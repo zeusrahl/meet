@@ -11,8 +11,6 @@ class NumberOfEvents extends Component {
     return (
       <div className="NumberOfEvents mt-40">
         <input
-          min={0}
-          max={10}
           className='eventsNumber'
           value={numberOfEvents}
         />

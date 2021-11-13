@@ -86,7 +86,7 @@ export const getAccessToken = async () => {
 
   if (!accessToken || tokenCheck.error) {
     await localStorage.removeItem("access_token");
-    const searchParams = newURLSearchParams(window.location.search);
+    const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get("code");
     if (!code) {
       const results = await axios.get(

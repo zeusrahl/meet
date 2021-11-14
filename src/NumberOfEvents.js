@@ -18,6 +18,9 @@ class NumberOfEvents extends Component {
     const numberOfEvents = this.state.numberOfEvents
     return (
       <div className="NumberOfEvents mt-40">
+        <div>
+          <p>Number of Events:</p>
+        </div>
         <input
           type="number"
           className='eventsNumber'

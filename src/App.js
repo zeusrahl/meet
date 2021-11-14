@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
@@ -50,15 +52,21 @@ class App extends Component {
   render() {
     const { locations, events, numberOfEvents } = this.state;
     return (
-      <div className="App">
-        <CitySearch 
-          locations={locations}
-          updateEvents={this.updateEvents}/>
-        <NumberOfEvents 
-          numberOfEvents={numberOfEvents}
-          updateEventCount={this.updateEventCount}/>
-        <EventList events={events}/>
-      </div>
+      <Container className="App">
+        <Row>
+          <Col className="CitySearchWrapper" md={6}>
+            <CitySearch locations={locations} updateEvents={this.updateEvents}/>
+          </Col>
+          <Col className="NumberOfEventsWrapper" md={6}>
+            <NumberOfEvents numberOfEvents={numberOfEvents} updateEventCount={this.updateEventCount}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <EventList events={events}/>
+          </Col>
+        </Row>
+      </Container>
     ); 
   }
 }

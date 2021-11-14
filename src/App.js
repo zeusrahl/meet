@@ -3,23 +3,15 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-<<<<<<< HEAD
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <CitySearch />
-        <NumberOfEvents />
-        <EventList />
-=======
 import { extractLocations, getEvents } from './api';
 import './nprogress.css';
 
 class App extends Component {
   state = {
     events: [],
-    locations: []
+    currentLocation: "all",
+    locations: [],
+    numberOfEvents: 32,
   }
 
   componentDidMount() {
@@ -40,21 +32,32 @@ class App extends Component {
       const locationEvents = (location === 'all') ?
         events:
         events.filter((event) => event.location === location);
+        const { numberOfEvents } = this.state;
       this.setState({
-        events: locationEvents
+        events: locationEvents.slice(0, numberOfEvents)
       });
     });
   }
 
+  updateEventCount = (eventCount) => {
+    const { currentLocation } = this.state;
+    this.setState({
+      numberOfEvents: eventCount
+    });
+    this.updateEvents(currentLocation, eventCount);
+  }
+
   render() {
+    const { locations, events, numberOfEvents } = this.state;
     return (
       <div className="App">
         <CitySearch 
-          locations={this.state.locations}
+          locations={locations}
           updateEvents={this.updateEvents}/>
-        <NumberOfEvents />
-        <EventList events={this.state.events}/>
->>>>>>> parent of f8bfc8b (Updates)
+        <NumberOfEvents 
+          numberOfEvents={numberOfEvents}
+          updateEventCount={this.updateEventCount}/>
+        <EventList events={events}/>
       </div>
     ); 
   }

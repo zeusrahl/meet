@@ -13,4 +13,9 @@ describe('<NumberOfEvents /> component', () => {
   test('textbox is rendered', () => {
     expect(NumberOfEventsWrapper.find('.eventsNumber')).toHaveLength(1);
   });
+
+  test('render text input correctly', () => {
+    const numberOfEvents = NumberOfEventsWrapper.state('numberOfEvents');
+    expect(NumberOfEventsWrapper.find('.eventsNumber').prop('value')).toBe(numberOfEvents);
+  });
 });

@@ -21,9 +21,9 @@ class App extends Component {
     getEvents().then((events) => {
       if (this.mounted) {
         const filteredEvents = events.slice(0, this.state.numberOfEvents);
-        this.setState({ 
+        this.setState({
           events: filteredEvents,
-          locations: extractLocations(events)
+          locations: extractLocations(events),
         });
       }
     });

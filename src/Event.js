@@ -45,7 +45,6 @@ class Event extends Component {
             onClick={this.handleHideDetailsClick}>
               Hide Details
             </Button>
-
         </div>
       </div>      
     );

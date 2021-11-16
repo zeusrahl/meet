@@ -24,6 +24,14 @@ p {
   display: block;
 }
 
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 input[type="text"],
 input[type="number"] {
   padding: 8px 6px 8px 10px;

@@ -29,7 +29,7 @@ class Event extends Component {
         <p className='location'>@{event.summary} | {event.location}</p>
         <Button
           variant='primary'
-          className={`show-details-btn ${this.state.collapsed ? "show" /*'hidden' ? */ : "hide"}`}
+          className={`show-details-btn ${this.state.collapsed ? "show" : "hide"}`}
           onClick={this.handleShowDetailsClick}>
             Show Details
         </Button>

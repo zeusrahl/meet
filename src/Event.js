@@ -10,12 +10,14 @@ class Event extends Component {
     this.setState({
       collapsed: false,
     });
+    console.log(this.state.collapsed)
   }
 
   handleHideDetailsClick = () => {
     this.setState({
       collapsed: true,
     });
+    console.log(this.state.collapsed);
   }
 
   render() {
@@ -28,7 +30,7 @@ class Event extends Component {
         <Button 
           id='show-details-btn'
           variant='primary'
-          className='show-details-btn'
+          className={`show-details-btn ${this.state.collapsed ? "show" /*'hidden' ? */ : "hide"}`}
           onClick={this.handleShowDetailsClick}>
             Show Details
         </Button>
@@ -41,7 +43,7 @@ class Event extends Component {
           <Button
             id='hide-details-btn'
             variant='primary'
-            className='hide-details-btn'
+            className={`hide-details-btn ${this.state.collapsed ? "hide" /*'hidden' ? */ : "show"}`}
             onClick={this.handleHideDetailsClick}>
               Hide Details
             </Button>

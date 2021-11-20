@@ -10,14 +10,12 @@ class Event extends Component {
     this.setState({
       collapsed: false,
     });
-    console.log(this.state.collapsed)
   }
 
   handleHideDetailsClick = () => {
     this.setState({
       collapsed: true,
     });
-    console.log(this.state.collapsed);
   }
 
   render() {

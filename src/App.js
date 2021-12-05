@@ -68,25 +68,22 @@ class App extends Component {
       return <div className="App" />;
     }
     return (
-      <div>
-        <Container className="App">
-          <Row>
-            <Col className="CitySearchWrapper" md={6}>
-              <CitySearch locations={locations} updateEvents={this.updateEvents}/>
-            </Col>
-            <Col className="NumberOfEventsWrapper" md={6}>
-              <NumberOfEvents numberOfEvents={numberOfEvents} updateEventCount={this.updateEventCount}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12}>
-              <EventList events={events}/>
-            </Col>
-          </Row>
-        </Container>
+      <Container className="App">
+        <Row>
+          <Col className="CitySearchWrapper" md={6}>
+            <CitySearch locations={locations} updateEvents={this.updateEvents}/>
+          </Col>
+          <Col className="NumberOfEventsWrapper" md={6}>
+            <NumberOfEvents numberOfEvents={numberOfEvents} updateEventCount={this.updateEventCount}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <EventList events={events}/>
+          </Col>
+        </Row>
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
-      </div>
-     
+      </Container> 
     );
   }
 }

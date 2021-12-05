@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import WelcomeScreen from './WelcomeScreen';
-import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
-
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
+import { extractLocations, getEvents } from './api';
 import './nprogress.css';
 
 class App extends Component {
@@ -16,27 +14,19 @@ class App extends Component {
     currentLocation: "all",
     locations: [],
     numberOfEvents: 32,
-    showWelcomeScreen: undefined
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.mounted = true;
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false: true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
-      getEvents().then((events) => {
-        if (this.mounted) {
-          const filteredEvents = events.slice(0, this.state.numberOfEvents);
+    getEvents().then((events) => {
+      if (this.mounted) {
+        const filteredEvents = events.slice(0, this.state.numberOfEvents);
         this.setState({
           events: filteredEvents,
-          locations: extractLocations(events)
-         })
-        }
-      })
-    }
+          locations: extractLocations(events),
+        });
+      }
+    });
   }
 
   componentWillUnmount(){
@@ -64,27 +54,23 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     const { locations, events, numberOfEvents } = this.state;
     return (
-      <div className="App">
-        <Container>
-          <Row>
-            <Col className="CitySearchWrapper" md={6}>
-              <CitySearch locations={locations} updateEvents={this.updateEvents}/>
-            </Col>
-            <Col className="NumberOfEventsWrapper" md={6}>
-              <NumberOfEvents numberOfEvents={numberOfEvents} updateEventCount={this.updateEventCount}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12}>
-              <EventList events={events}/>
-            </Col>
-          </Row>
-        </Container>
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
-      </div>
+      <Container className="App">
+        <Row>
+          <Col className="CitySearchWrapper" md={6}>
+            <CitySearch locations={locations} updateEvents={this.updateEvents}/>
+          </Col>
+          <Col className="NumberOfEventsWrapper" md={6}>
+            <NumberOfEvents numberOfEvents={numberOfEvents} updateEventCount={this.updateEventCount}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <EventList events={events}/>
+          </Col>
+        </Row>
+      </Container>
     ); 
   }
 }

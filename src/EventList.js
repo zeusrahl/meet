@@ -6,7 +6,7 @@ class EventList extends Component {
     const { events } = this.props;
     return (
       <div>
-        {!navigator.online ? (
+        {!navigator.onLine ? (
           <InfoAlert text="You are not online! You're data may not be up to date" />
         ) : (
           ''

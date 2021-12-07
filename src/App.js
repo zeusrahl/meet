@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
+import { InfoAlert } from './Alert';
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -16,13 +17,14 @@ class App extends Component {
     currentLocation: "all",
     locations: [],
     numberOfEvents: 32,
-    showWelcomeScreen: undefined
-  }
+    showWelcomeScreen: undefined,
+    offLineText: '',
+  };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false: true;
+    const isTokenValid = checkToken(accessToken).error ? false: true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get('code');
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
@@ -33,9 +35,18 @@ class App extends Component {
         this.setState({
           events: filteredEvents,
           locations: extractLocations(events)
-         })
+         });
         }
-      })
+      });
+      if (!navigator.onLine) {
+        this.setState({
+          offLineText: "You are not online! Your data may not be up to date.",
+        });
+      } else {
+        this.setState({
+          offLineText: '',
+        });
+      }
     }
   }
 
@@ -53,7 +64,7 @@ class App extends Component {
         events: locationEvents.slice(0, numberOfEvents)
       });
     });
-  }
+  };
 
   updateEventCount = (eventCount) => {
     const { currentLocation } = this.state;
@@ -70,6 +81,7 @@ class App extends Component {
       <div className="App">
         <Container>
           <Row>
+            <InfoAlert text={this.state.offLineText} />
             <Col className="CitySearchWrapper" md={6}>
               <CitySearch locations={locations} updateEvents={this.updateEvents}/>
             </Col>

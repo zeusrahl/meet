@@ -54,25 +54,34 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
-    getEvents().then((events) => {
-      const locationEvents =
-        location === "all"
-          ? events
-          : events.filter((event) => event.location === location);
-      const { numberOfEvents } = this.state;
-      this.setState({
-        events: locationEvents.slice(0, numberOfEvents),
+  updateEvents = (location, eventCount) => {
+    const { currentLocation, numberOfEvents } = this.state;
+    if (location) {
+      getEvents().then((events) => {
+        const locationEvents =
+          location === "all"
+            ? events
+            : events.filter((event) => event.location === location);
+        const filteredEvents = locationEvents.slice(0, numberOfEvents);
+        this.setState({
+          events: filteredEvents,
+          currentLocation: location,
+        });
       });
-    });
-  };
+    }
 
-  updateEventCount = (eventCount) => {
-    const { currentLocation } = this.state;
-    this.setState({
-      numberOfEvents: eventCount,
-    });
-    this.updateEvents(currentLocation, eventCount);
+    else {
+      getEvents.apply().then((events) => {
+        const locationEvents = (currentLocation === "all") ?
+        events :
+        events.filter((event) => event.location === currentLocation);
+        const filteredEvents = locationEvents.slice(0, eventCount);
+        this.setState({
+          events: filteredEvents,
+          numberOfEvents: eventCount,
+        })
+      })
+    }
   };
 
   render() {
@@ -81,9 +90,9 @@ class App extends Component {
     const { locations, events, numberOfEvents } = this.state;
     return (
       <div className="App">
-        <Container>
+        <InfoAlert text={this.state.offLineText} />
+        <Container className="Content-Wrapper">
           <Row>
-            <InfoAlert text={this.state.offLineText} />
             <Col className="CitySearchWrapper" md={6}>
               <CitySearch
                 locations={locations}
@@ -93,7 +102,7 @@ class App extends Component {
             <Col className="NumberOfEventsWrapper" md={6}>
               <NumberOfEvents
                 numberOfEvents={numberOfEvents}
-                updateEventCount={this.updateEventCount}
+                updateEventCount={this.updateEvents}
               />
             </Col>
           </Row>

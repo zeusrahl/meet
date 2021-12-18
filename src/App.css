@@ -2,6 +2,9 @@
 .App {
   text-align: center;
   padding: 2% 5%;
+  background-color: #02394A;
+  color: #aec5eb;
+  
 }
 
 .App * {
@@ -75,7 +78,7 @@ input[type="number"] {
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #eee;
+  background-color: #043565;
   cursor: default;
 }
 
@@ -85,7 +88,8 @@ input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+  background-color: #8db38b;
+  color: #043565;
 }
 
 .event {
@@ -95,6 +99,7 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
+  color: #aec5eb
 }
 
 .details-btn {
@@ -149,6 +154,7 @@ input[type="number"] {
   display: flex;
   align-items: center;
   flex-direction: column;
+  color: #aec5eb
 }
 .data-vis-wrapper .recharts-responsive-container {
   min-width: 100%;

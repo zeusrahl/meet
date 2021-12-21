@@ -3,17 +3,24 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const EventGenre = ({ events }) => {
   const [data, setData] = useState([]);
-  const colors = ['#d0427f', '#f8a01f', '#528272', '#f15f4b', '#7dbeb8', '#5c69a0'];
+  const colors = ['#d0427f', '#f8a01f', '#528272', '#f15f4b', '#7dbeb8', '#5c69a0', '#fff000']; // change last color to match color palatte
   useEffect(() => { 
     setData(() => getData());
   }, [events]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getData = () => {
-    const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
-    const data = genres.map((genre) => {
-      const value = events.filter((event) => event.summary.split(' ').includes(genre)).length;
-      return { name: genre, value: value };    
-    });
+    const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS', 'Angular'];
+    const data = genres
+      .reduce(
+        (xs, genre) => {
+          const value = events.filter((event) => event.summary.split(' ').includes(genre)).length;
+          if (value > 0 ){
+            xs.push({ name: genre, value: value });
+          }
+          return xs;
+        },
+          []
+        );
     return data;
   };
 
